@@ -1,0 +1,19 @@
+.instruction-item {
+    display: flex;
+    margin: 8px 0;
+}
+
+.instruction-item__title {
+    margin: 0 8px;
+    min-width: 11rem;
+    display: flex;
+    align-items: center;
+    flex: 1
+}
+
+.instruction-item__text {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    flex: 9
+}
