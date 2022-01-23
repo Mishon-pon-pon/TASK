@@ -7,13 +7,13 @@
     margin: 0 8px;
     min-width: 11rem;
     display: flex;
-    align-items: center;
     flex: 1
 }
 
 .instruction-item__text {
     margin: 0 8px;
     display: flex;
-    align-items: center;
-    flex: 9
+    flex: 9;
+    padding: 6px 0;
+    word-wrap: break-word;
 }

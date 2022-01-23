@@ -1,5 +1,5 @@
 import React from "react";
-import { Home } from "../../Pages/Task";
+import { Task } from "../../Pages/Task";
 import { ROUTER_CONST } from "./routerConst/RouterConstCB";
 
 export const getPageMapFromSegmentCB = (
@@ -8,7 +8,7 @@ export const getPageMapFromSegmentCB = (
 ): JSX.Element | null => {
   switch (segment) {
     case ROUTER_CONST.TASK.name:
-      return <Home />;
+      return <Task />;
     default:
       return <div>Not found</div>;
   }

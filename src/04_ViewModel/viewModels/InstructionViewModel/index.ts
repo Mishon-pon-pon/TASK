@@ -4,7 +4,7 @@ import { IInstructionDTO } from "../../../Models";
 
 export interface IInstructionViewModel {
   data?: IInstructionDTO[];
-  getData(): Promise<IInstructionDTO[]>;
+  getData(): Promise<void>;
 }
 
 export class InstructionViewModel implements IInstructionViewModel {
@@ -12,12 +12,16 @@ export class InstructionViewModel implements IInstructionViewModel {
   constructor(protected service: IInstructionService) {
     makeObservable(this, {
       data: observable,
-      getData: action,
+      setData: action,
     });
   }
 
-  getData = async (): Promise<IInstructionDTO[]> => {
-    this.data = await this.service.getData();
-    return this.data;
+  getData = async (): Promise<void> => {
+    const data = await this.service.getData();
+    this.setData(data);
   };
+
+  setData(data: IInstructionDTO[]) {
+    this.data = data;
+  }
 }

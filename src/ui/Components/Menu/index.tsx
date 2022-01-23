@@ -1,39 +1,31 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import React, { useState } from "react";
 import { useRoute } from "react-router5";
 import { ROUTER_CONST } from "../../App/settings/routerConst/RouterConstCB";
+import "./index.css";
 
 export const Menu = () => {
-  const { router } = useRoute();
+  const { router, route } = useRoute();
+  const [active, setActive] = useState(route.name);
 
-  const [value, setValue] = React.useState(0);
-
-  function handlerFactory(routerName: string) {
+  function handlerFactory(routeName: string) {
     return () => {
-      router.navigate(routerName);
+      setActive(routeName);
+      router.navigate(routeName);
     };
   }
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      >
-        <BottomNavigationAction
-          label="Задание"
+    <nav className="menu">
+      <ul className="menu__list">
+        <li
+          className={`${
+            active === ROUTER_CONST.TASK.name ? "active" : ""
+          } menu__item`}
           onClick={handlerFactory(ROUTER_CONST.TASK.name)}
-        />
-        <BottomNavigationAction
-          label="Решение"
-          onClick={handlerFactory(ROUTER_CONST.TASK.name)}
-        />
-      </BottomNavigation>
-    </Box>
+        >
+          Задание
+        </li>
+      </ul>
+    </nav>
   );
 };

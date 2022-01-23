@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * + * {
+        margin: 8px;
+      }
+
+      form {
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+      }
+      form > * {
+        width: 100%;
+      }
+      button {
+        background-color: lightblue;
+        border: none;
+        box-shadow: none;
+        font-weight: bold;
+        height: 5em;
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="instruction">
+      <label for="title">Title</label>
+      <input type="text" name="title" />
+      <label for="text">Text</label>
+      <textarea name="text" rows="15"></textarea>
+      <button>Send</button>
+    </form>
+    <script>
+      const form = document.getElementById("instruction");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+
+        if (!data.get("title") || !data.get("text")) {
+          return;
+        }
+
+        fetch("/admin/instruction", {
+          method: "POST",
+          body: JSON.stringify({
+            title: data.get("title"),
+            text: data.get("text"),
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
