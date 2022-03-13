@@ -3,8 +3,8 @@ import { useRoute } from "react-router5";
 import { observer } from "mobx-react-lite";
 import { constants } from "router5";
 import useRouteSegment from "../hooks/useRouteSegment";
-import "./index.css";
 import { Menu } from "../Components/Menu";
+import "./index.css";
 
 /**
  * Основной контейнер приложения.
